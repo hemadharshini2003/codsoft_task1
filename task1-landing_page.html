@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie Land</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;        
+}
+
+body {
+    margin: 0 100px;
+    background-color: #ffeae0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    background-color: #ffeae0;
+    background: transparent;
+    z-index: 1000;
+}
+
+.nav .logo h1 {
+    font-weight: 600;
+    font-family: sans-serif;
+    color: #000000;
+}
+
+.nav .logo b {
+    color: #ff511c;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav ul li {
+    margin-right: 30px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    font-family: sans-serif;
+    font-size: 17px;
+}
+
+.nav ul li a:hover {
+    color: #ff511c;
+}
+
+
+.nav ul li a:hover::after {
+    width: 100%; 
+    transition: width 0.3s;
+    color: #ff511c; 
+}
+
+.input {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.signin {
+    background: transparent;
+    border: none;
+    transition: color 0.3s ease; 
+}
+
+.signin:hover {
+    color: #ff511c; 
+    text-decoration: underline; 
+    outline: auto;
+}
+
+.signup {
+    background-color: #ff511c;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.signup:hover {
+    background-color: #e34515; 
+    transform: scale(1.05); 
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 50% auto;
+    gap: 30px;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.content .content-left {
+    display: block;
+    width: 100%;
+}
+
+.content .content-left .info {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content .content-left .info h2 {
+    font-size: 48px;
+    font-family: sans-serif;
+    margin-bottom: 20px;
+}
+
+.content .content-left .info p {
+    font-size: 18px;
+    line-height: 1.5em;
+    margin-bottom: 30px;
+    font-family: sans-serif;
+}
+
+.content .content-left button {
+    padding: 10px 23px;
+    background-color: #ff511c;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.content .content-left button:hover {
+    background-color: #e34515; 
+    transform: scale(1.05); 
+}
+
+.content .content-right {
+    display: block;
+    width: 100%;
+}
+
+.content .content-right img {
+    width: 400px;
+    height: auto;
+    position: relative;
+}
+
+.menu-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.menu-section h2 {
+    font-size: 2.5em;
+    color: #d9534f;
+    margin-bottom: 30px;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+}
+
+.menu-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.menu-item h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.menu-item p {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #d9534f;
+}
+
+.service-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.service-section h2 {
+    font-size: 2.5em;
+    color: #d9534f;
+    margin-bottom: 30px;
+}
+
+.service-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.service-item {
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: scale(1.05);
+}
+
+.service-item img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.service-item h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.about-section {
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.about-content h2 {
+    font-size: 2.5em;
+    color: #d9534f;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d9534f;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #c43c3c;
+}
+
+.gallery-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.gallery-section h2 {
+    font-size: 2.5em;
+    color: #d9534f;
+    margin-bottom: 30px;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img:hover {
+    transform: scale(1.1);
+}
+
+footer {
+    background-color: #ff511c; 
+    color: #ffffff; 
+    padding: 40px 100px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; 
+}
+
+.footer-logo {
+    flex: 1; 
+}
+
+.footer-logo h1 {
+    font-size: 32px;
+    margin-bottom: 10px; 
+}
+
+.footer-links, .footer-contact, .footer-social {
+    flex: 1; 
+    margin-left: 20px; 
+}
+
+.footer-links h3, .footer-contact h3, .footer-social h3 {
+    margin-bottom: 15px; 
+}
+
+.footer-links ul {
+    list-style: none; 
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px; 
+}
+
+.footer-links ul li a {
+    text-decoration: none; 
+    color: #ffffff; 
+    transition: color 0.3s; 
+}
+
+.footer-links ul li a:hover {
+    color: #ffeae0;
+    text-decoration: underline;
+}
+
+.footer-social .social-icons {
+    display: flex; 
+}
+
+.footer-social .social-icons a {
+    margin-right: 15px;
+    transition: transform 0.3s;
+    }
+
+.footer-social .social-icons a:hover {
+    transform: scale(1.2);
+}
+
+.footer-social img {
+    width: 25px; 
+    height: 25px; 
+}
+
+.footer-bottom {
+    text-align: center; 
+    margin-top: 20px; 
+}
+
+    </style>
+</head>
+<body>
+    <section class="menu" id="home">
+        <div class="nav">
+            <div class="logo"><h1>Foodie<b>Land</b></h1></div>
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#service">Service</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+            <div>
+                <button class="signin" type="button">Sign In</button>
+                <button class="signup" type="button">Sign Up</button>
+            </div>
+        </div>
+    </section>
+    <section class="grid">
+        <div class="content">
+            <div class="content-left">
+                <div class="info">
+                    <h2>Order your Best <br>Food anytime</h2>
+                    <p>Hey our delicious food is waiting for you, <br>
+                    We are always near to you with fresh items of food</p>
+                </div>
+                <button>Explore food</button>
+            </div>
+            <div class="content-right">
+                <img src="images/main-img.jpg" alt="Delicious food">
+            </div>
+        </div>
+    </section>
+    <section class="menu-section" id="menu">
+        <h2>Non-Veg Menu</h2>
+        <div class="menu-container">
+            <div class="menu-item">
+                <img src="images/checken-curry.jpg" alt="Chicken Curry">
+                <h3>Chicken Curry</h3>
+                <p>Spicy and flavorful chicken cooked in a rich curry sauce.</p>
+                <span class="price">Rs.130</span>
+            </div>
+            <div class="menu-item">
+                <img src="images/grilled-fish.jpg" alt="Grilled Fish">
+                <h3>Grilled Fish</h3>
+                <p>Perfectly grilled fish seasoned with herbs and spices.</p>
+                <span class="price">Rs.700</span>
+            </div>
+            <div class="menu-item">
+                <img src="images/beef-steak.jpg" alt="Beef Steak">
+                <h3>Beef Steak</h3>
+                <p>Juicy, tender beef steak cooked to perfection.</p>
+                <span class="price">Rs.560</span>
+            </div>
+            <div class="menu-item">
+                <img src="images/prawn-fry.jpg" alt="Prawn Fry">
+                <h3>Prawn Fry</h3>
+                <p>Crispy fried prawns with a hint of garlic and pepper.</p>
+                <span class="price">Rs.1200</span>
+            </div>
+            <div class="menu-item">
+                <img src="images/lamb-chops.jpg" alt="Lamb Chops">
+                <h3>Lamb Chops</h3>
+                <p>Grilled lamb chops marinated in a blend of spices.</p>
+                <span class="price">Rs.831</span>
+            </div>
+            <div class="menu-item">
+                <img src="images/chicken-tikka.jpg" alt="Chicken Tikka">
+                <h3>Chicken Tikka</h3>
+                <p>Succulent pieces of chicken, marinated and grilled to perfection.</p>
+                <span class="price">Rs.280</span>
+            </div>
+            <div class="menu-item">
+                <img src="images/bbq-ribs.jpg" alt="BBQ Ribs">
+                <h3>BBQ Ribs</h3>
+                <p>Slow-cooked pork ribs, smothered in tangy BBQ sauce.</p>
+                <span class="price">Rs.500</span>
+            </div>
+            <div class="menu-item">
+                <img src="images/butter-chicken.jpg" alt="Butter Chicken">
+                <h3>Butter Chicken</h3>
+                <p>Rich, creamy, and mildly spiced chicken cooked in butter sauce.</p>
+                <span class="price">Rs.300</span>
+            </div>
+        </div>
+    </section>
+    <section class="service-section" id="service">
+        <h2>Our Services</h2>
+        <div class="service-container">
+            <div class="service-item">
+                <img src="images/service1.png" alt="Delivery Service">
+                <h3>Fast Delivery</h3>
+                <p>Get your favorite meals delivered to your doorstep quickly and fresh.</p>
+            </div>
+            <div class="service-item">
+                <img src="images/service2.jpg" alt="Catering Service">
+                <h3>Event Catering</h3>
+                <p>We cater for all events - from small gatherings to big celebrations.</p>
+            </div>
+            <div class="service-item">
+                <img src="images/service3.jpg" alt="Dine-In Service">
+                <h3>Cozy Dine-In</h3>
+                <p>Enjoy a pleasant dining experience in our comfortable and stylish restaurant.</p>
+            </div>
+        </div>
+    </section>
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="images/about-img.jpg" alt="About Our Food Shop">
+            </div>
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>Welcome to our food shop! We have been serving delicious meals made from fresh, locally-sourced ingredients since 2010. Our passion is to bring people together through great food and exceptional service.</p>
+                <p>From our signature dishes to seasonal specials, every meal is crafted with love and care. Whether you're dining in, ordering out, or booking us for catering, we ensure a delightful experience.</p>
+                <p>We believe in quality, community, and sustainability. Join us for a meal and taste the difference!</p>
+                <a href="#menu" class="btn">Explore Our Menu</a>
+            </div>
+        </div>
+    </section>
+    <section class="gallery-section" id="gallery">
+        <h2>Our Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="images/images1.jpg" alt="Delicious Dish 1">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images2.jpg" alt="Delicious Dish 2">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images3.jpg" alt="Delicious Dish 3">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images4.jpg" alt="Delicious Dish 4">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images5.jpg" alt="Delicious Dish 5">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images6.jpg" alt="Delicious Dish 6">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images7.jpg" alt="Delicious Dish 7">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images8.jpg" alt="Delicious Dish 8">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images9.jpg" alt="Delicious Dish 9">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images10.jpg" alt="Delicious Dish 10">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images11.jpg" alt="Delicious Dish 11">
+            </div>
+            <div class="gallery-item">
+                <img src="images/images12.jpg" alt="Delicious Dish 12">
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h1><b>F</b>oodie</h1>
+                <p>Your favorite food delivered to your door.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Email: support@foodie.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123 Foodie St, Foodtown, Chennai</p>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#"><i class='bx bxl-instagram' ></i></a>
+                    <a href="#"><i class='bx bxl-linkedin-square' ></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Foodie. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
